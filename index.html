@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenron</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    :root {
+      --color-blue: #3b82f6; /* Tailwind Blue-500 */
+      --color-blue-hover: #2563eb; /* Tailwind Blue-600 */
+      --color-text-base: #6b7280; /* Gray-500 */
+      --color-text-dark: #111827; /* Gray-900 */
+      --border-radius: 0.75rem;
+      --transition-speed: 0.3s;
+      --color-search-bg: #f9fafb;
+      --color-search-border: #d1d5db;
+      --color-bg: #ffffff;
+      --color-card-bg: #f9fafb;
+      --shadow-light: rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-base);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--color-bg);
+      padding: 1rem 0;
+      box-shadow:
+        0 4px 12px var(--shadow-light),
+        0 12px 32px rgba(0, 0, 0, 0.06);
+      z-index: 1000;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--color-text-dark);
+      letter-spacing: 0.12em;
+      user-select: none;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .search-container {
+      flex-grow: 1;
+      position: relative;
+      min-width: 0;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      border: 1.5px solid var(--color-search-border);
+      border-radius: var(--border-radius);
+      background-color: var(--color-search-bg);
+      color: var(--color-text-dark);
+      font-size: 1rem;
+      transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+      font-weight: 500;
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-blue);
+      box-shadow: 0 0 10px var(--color-blue);
+      background-color: #ffffff;
+      color: var(--color-text-dark);
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      width: 1.25rem;
+      height: 1.25rem;
+      stroke: #6b7280;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+      transition: stroke var(--transition-speed);
+    }
+
+    .search-input:focus + .search-icon {
+      stroke: var(--color-blue);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .icon-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-base);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0.25rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+    .icon-button:hover,
+    .icon-button:focus {
+      background-color: var(--color-blue);
+      color: #fff;
+      outline: none;
+    }
+
+    .icon-button svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      pointer-events: none;
+    }
+
+    /* Product Section */
+    main {
+      padding-top: 4rem;
+      padding-bottom: 5rem;
+      background: var(--color-bg);
+    }
+
+    .products-container {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    h2.section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      margin-bottom: 2.5rem;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--color-card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 8px var(--shadow-light);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .product-card:hover,
+    .product-card:focus-within {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    .product-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-title {
+      font-weight: 700;
+      color: var(--color-text-dark);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-description {
+      color: var(--color-text-base);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .view-product-btn {
+      margin-top: 1.5rem;
+      background-color: var(--color-text-dark);
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: start;
+    }
+    .view-product-btn:hover,
+    .view-product-btn:focus {
+      background-color: #374151;
+      outline: none;
+    }
+
+    /* Slider Styles */
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 200px; /* Adjust height as needed */
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .search-container {
+        order: 2;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .logo {
+        order: 1;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+      }
+      .nav-icons {
+        order: 3;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Primary navigation">
+      <div class="logo" aria-label="Zenron logo" tabindex="0">ZENRON</div>
+      <div class="search-container">
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Search products"
+          aria-label="Search products"
+          spellcheck="true"
+          autocomplete="on"
+        />
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="16.6569" y1="16.6569" x2="21" y2="21"></line>
+        </svg>
+      </div>
+      <div class="nav-icons">
+        <button class="icon-button" aria-label="Profile" tabindex="0" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M6 20c0-3.33 5.33-5 6-5s6 1.67 6 5"></path>
+          </svg>
+        </button>
+        <button class="icon-button" aria-label="Cart" tabindex="0" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Slider -->
+    <section class="container">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="krishn.jpg" alt="Slide 1"></div>
+          <div class="swiper-slide"><img src="1213e102fd00e225.webp" alt="Slide 2"></div>
+          <div class="swiper-slide"><img src="c2e098cf-8293-4f19-9871-25a61dfd3374_page-0001.jpg" alt="Slide 3"></div>
+          <div class="swiper-slide"><img src="Herofader-PC_1._CB791816836_.jpg" alt="Slide 4"></div>
+         
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="products-heading" class="products-container">
+      <h2 id="products-heading" class="section-title">Featured Products</h2>
+      <div class="product-grid">
+        <article tabindex="0" class="product-card">
+          <img src="jbl-beam-3-blue-1.webp" alt="Elegant Minimalist Chair" class="product-image" />
+          <div class="product-content">
+            <div>
+              <h3 class="product-title">Earbards</h3>
+              <p class="product-description">earbuds earphone FAST CHARGING 3 Days Backup,High Quality Sound,Pure Bass bluetooth neckband wireless headphone earbuds true wireless tws N135.</p>
+            </div>
+            <button class="view-product-btn" aria-label="₹999">₹999</button>
+          </div>
+        </article>
+
+        <article tabindex="0" class="product-card">
+          <img src="41DwYh9MjSL._SX300_SY300_QL70_FMwebp_.webp" alt="Modern Table Lamp" class="product-image" />
+          <div class="product-content">
+            <div>
+              <h3 class="product-title">Smart Watches</h3>
+              <p class="product-description">Wireless Charging Smart Watches for Men's Fashion.</p>
+            </div>
+            <button class="view-product-btn" aria-label="View details of Modern Table Lamp">₹949 </button>
+          </div> 
+        </article>
+
+        <article tabindex="0" class="product-card">
+          <img src="Artboard_1._CB793703960_.png" alt="Comfortable Sofa Set" class="product-image" />
+          <div class="product-content">
+            <div>
+              <h3 class="product-title">Laptops</h3>
+              <p class="product-description">HP 15,13th Gen Intel Core i7-1355U Laptop,(16GB DDR4, 512GB SSD) Antiglare, 15.6’’/39.6cm, FHD, Win11, M365 Basic(1yr), Office Home 24, Silver, 1.59kg, Iris Xe, FHD Camera w/Shutter, Backlit, fd0468tu.</p>
+            </div>
+            <button class="view-product-btn" aria-label="View details of Comfortable Sofa Set"> ₹68,490</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+</body>
+</html>
+<script>
+    // Accessibility enhancements
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          card.click();
+        }
+      });
+    });
+
+    document.querySelectorAll('.icon-button').forEach(button => {
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          button.click();
+        }
+      });
+    });
+  </script>
