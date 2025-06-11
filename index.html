@@ -443,3 +443,313 @@
       });
     });
   </script>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenron Website Footer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #121212;
+      color: #eee;
+    }
+    a {
+      color: #82aaff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #a8c0ff;
+      outline: none;
+    }
+    /* Container */
+    .footer {
+      background-color: #1e1e2f;
+      padding: 48px 24px 48px 24px;
+      color: #ccc;
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    /* Accordion for mobile */
+    .footer-section h3 {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: #eee;
+      user-select: none;
+      padding: 0;
+      border: none;
+      background: none;
+      width: 100%;
+    }
+
+    .footer-section h3:focus-visible {
+      outline: 2px solid #82aaff;
+      outline-offset: 2px;
+    }
+
+    /* Icon next to header */
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 24;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 8px;
+      color: #82aaff;
+    }
+
+    /* Sections */
+    .footer-section {
+      border-bottom: 1px solid #333448;
+      padding-bottom: 24px;
+    }
+    .footer-section:last-child {
+      border-bottom: none;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.95rem;
+      display: inline-block;
+    }
+
+    /* Social icons container */
+    .social-icons {
+      display: flex;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .social-icons a {
+      color: #82aaff;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #2e2e48;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .social-icons a:hover,
+    .social-icons a:focus {
+      background-color: #82aaff;
+      color: #121212;
+      outline: none;
+    }
+    .social-icons svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Footer bottom */
+    .footer-bottom {
+      margin-top: 48px;
+      border-top: 1px solid #333448;
+      padding-top: 20px;
+      font-size: 0.875rem;
+      color: #777aa3;
+      text-align: center;
+    }
+
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      .footer-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 56px;
+      }
+      .footer-section {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .footer-section h3 {
+        cursor: default;
+      }
+      .footer-section h3 .material-symbols-outlined {
+        display: none;
+      }
+      .footer-links li {
+        margin-bottom: 16px;
+      }
+      .footer-bottom {
+        text-align: left;
+        grid-column: 1 / -1;
+        margin-top: 64px;
+      }
+    }
+
+    /* Large desktop max width */
+    @media (min-width: 1440px) {
+      .footer-container {
+        max-width: 1200px;
+        margin: auto;
+      }
+    }
+
+    /* Accessibility focus outline */
+    a:focus-visible {
+      outline: 2px solid #82aaff;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <footer class="footer" role="contentinfo" aria-label="Site footer">
+    <div class="footer-container">
+      <section class="footer-section" aria-labelledby="footer-about-heading">
+        <h3 id="footer-about-heading" tabindex="0" aria-expanded="false" aria-controls="footer-about-list">
+          About Zenron
+          <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+        </h3>
+        <p style="color:#bbb; font-size: 0.95rem; line-height: 1.5; max-width: 360px;">
+          Zenron is a modern note-taking application designed to help you organize your thoughts seamlessly with rich features and beautiful interface.
+        </p>
+      </section>
+
+      <section class="footer-section" aria-labelledby="footer-navigation-heading">
+        <h3 id="footer-navigation-heading" tabindex="0" aria-expanded="false" aria-controls="footer-navigation-list">
+          Navigation
+          <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+        </h3>
+        <ul class="footer-links" id="footer-navigation-list">
+          <li><a href="#" tabindex="0">Home</a></li>
+          <li><a href="#" tabindex="0">Features</a></li>
+          <li><a href="#" tabindex="0">Pricing</a></li>
+          <li><a href="#" tabindex="0">Support</a></li>
+          <li><a href="#" tabindex="0">Blog</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-section" aria-labelledby="footer-connect-heading">
+        <h3 id="footer-connect-heading" tabindex="0" aria-expanded="false" aria-controls="footer-connect-list">
+          Connect with us
+          <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+        </h3>
+        <div>
+          <p style="color:#bbb; font-size: 0.95rem;">Follow us on social media for updates and support.</p>
+          <div class="social-icons" id="footer-connect-list">
+            <a href="https://twitter.com" rel="noopener" aria-label="Twitter" target="_blank" tabindex="0">
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false" role="img" >
+                <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.288 4.288 0 001.88-2.37 8.602 8.602 0 01-2.72 1.04 4.288 4.288 0 00-7.3 3.91A12.162 12.162 0 013 5.15a4.289 4.289 0 001.33 5.72 4.276 4.276 0 01-1.94-.54v.05c0 2.15 1.53 3.94 3.56 4.35a4.3 4.3 0 01-1.93.07 4.29 4.29 0 004 2.98A8.596 8.596 0 012 19.54a12.132 12.132 0 006.56 1.92c7.88 0 12.2-6.54 12.2-12.2l-.01-.56A8.72 8.72 0 0022.46 6z"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" rel="noopener" aria-label="Facebook" target="_blank" tabindex="0">
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false" role="img" >
+                <path d="M22 12a10 10 0 10-11.5 9.87v-6.97h-2.4v-2.9h2.4v-2.2c0-2.36 1.4-3.67 3.54-3.67 1.02 0 2.08.18 2.08.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.95h2.58l-.41 2.9h-2.17V21.9A10 10 0 0022 12z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" rel="noopener" aria-label="LinkedIn" target="_blank" tabindex="0">
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false" role="img" >
+                <path d="M4.98 3.5a2.5 2.5 0 11-.001 5.001A2.5 2.5 0 014.98 3.5zM3 8h4v12H3zM9 8h3.573v1.71h.05a3.922 3.922 0 013.53-1.94c3.777 0 4.474 2.487 4.474 5.722V20H16v-6.098c0-1.453-.026-3.322-2.027-3.322-2.028 0-2.336 1.584-2.336 3.215V20H9z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" rel="noopener" aria-label="Instagram" target="_blank" tabindex="0">
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false" role="img" >
+                <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm8.5 2a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-4.5 1.5a5.5 5.5 0 11-.001 11.001A5.5 5.5 0 0111 5.5zm0 2a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2024 Zenron. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Accordion behavior for mobile: toggling sections
+    document.querySelectorAll('.footer-section h3').forEach(header => {
+      header.addEventListener('click', () => {
+        const expanded = header.getAttribute('aria-expanded') === 'true';
+        header.setAttribute('aria-expanded', String(!expanded));
+
+        const icon = header.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.style.transform = expanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        const controlsId = header.getAttribute('aria-controls');
+        const controlsEl = document.getElementById(controlsId);
+        if (controlsEl) {
+          if (expanded) {
+            controlsEl.style.display = 'none';
+          } else {
+            controlsEl.style.display = 'block';
+          }
+        }
+      });
+
+      // On load, hide controlled elements on mobile (for accessibility)
+      const controlsId = header.getAttribute('aria-controls');
+      const controlsEl = document.getElementById(controlsId);
+      if (controlsEl && window.innerWidth < 768) {
+        controlsEl.style.display = 'none';
+      }
+    });
+
+    // On window resize, reset display and aria-expanded states for larger screens
+    window.addEventListener('resize', () => {
+      if(window.innerWidth >= 768){
+        document.querySelectorAll('.footer-section h3').forEach(header => {
+          header.setAttribute('aria-expanded', false);
+          const icon = header.querySelector('.material-symbols-outlined');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+          const controlsId = header.getAttribute('aria-controls');
+          const controlsEl = document.getElementById(controlsId);
+          if(controlsEl){
+            controlsEl.style.display = 'block';
+          }
+        });
+      } else {
+        document.querySelectorAll('.footer-section h3').forEach(header => {
+          const controlsId = header.getAttribute('aria-controls');
+          const controlsEl = document.getElementById(controlsId);
+          if(controlsEl){
+            controlsEl.style.display = 'none';
+            header.setAttribute('aria-expanded', false);
+            const icon = header.querySelector('.material-symbols-outlined');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
